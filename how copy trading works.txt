@@ -1,0 +1,67 @@
+Copy Trading System Overview
+1. Core Concept
+Copy trading allows users to automatically replicate the trades of expert traders. Users invest money to "copy" an expert's trading strategy and receive profits/losses based on the expert's performance.
+
+2. Key Components
+Expert Traders (copytradings table)
+
+Professional traders with profiles showing:
+Win rate (percentage of successful trades)
+Rating/reputation
+Minimum investment amount
+Trading performance history
+User Copy Trades (user_copytradings table)
+
+Records when a user starts copying an expert
+Tracks: investment amount, current balance, profits, trade statistics
+3. How It Works Step by Step
+Starting Copy Trading:
+User browses available expert traders
+User selects an expert and enters investment amount (must meet minimum)
+System checks if user has sufficient account balance
+Money is deducted from user's account and allocated to copy the expert
+A copy trading record is created linking user to expert
+Profit Generation (Automated):
+The system automatically generates profits/losses every 2-8 hours:
+
+Profit Calculation:
+
+Uses expert's win rate to determine if trade is profitable
+Profitable trades: 0.5% to 4% of current balance
+Losing trades: 0.2% to 2% of current balance
+What Happens When Profits Are Generated:
+Copy Trade Balance Updated: Profit added to copy trade's current balance
+User Account Balance: Profit added directly to user's main account
+User ROI Updated: Overall return on investment recalculated
+Transaction Recorded: Each profit/loss logged in transaction history
+Email Notification: User notified of significant profits (>5% of investment)
+Stopping Copy Trading:
+User can stop copying an expert anytime
+Current balance (investment + profits) returned to user's account
+Copy trade marked as inactive
+Expert's follower count decremented
+4. Key Features
+Real-time Tracking:
+
+Current balance of each copy trade
+Total profits/losses
+Win rate and trade statistics
+ROI percentage
+Risk Management:
+
+Losses cannot exceed the invested amount
+Balance never goes below zero: max(0, $copyTrade->current_balance - $loss)
+Automated Operations:
+
+Profits generated automatically by scheduler
+No manual intervention required
+Simulates real trading activity
+5. User Experience Flow
+Browse Experts → View available traders with their performance metrics
+Invest → Choose expert and investment amount
+Monitor → Track performance through dashboard
+Earn → Receive automated profits based on expert's "trades"
+Withdraw → Stop copying and get money back anytime
+6. Technical Implementation
+The system uses:
+

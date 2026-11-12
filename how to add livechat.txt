@@ -1,0 +1,18 @@
+how add livechat 
+
+
+go to to resources/layout/livechat.blade.php
+
+add the livechat code there
+
+
+
+cron job code 
+
+
+
+Task Cron Job	Command to paste
+wget -q -O - https://yourdomain.com/cron   every 5mins
+wget -q -O - https://yourdomain.com/run-crypto-update?key=8753       every 30mins
+wget -q -O - https://yourdomain.com/run-market-update?key=8753       every 5 hours 
+wget -q -O - https://yourdomain.com/copytrade?key=8753
